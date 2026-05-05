@@ -8,12 +8,23 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('petcure_token');
-    const savedUser = localStorage.getItem('petcure_user');
-    if (token && savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-    setLoading(false);
+    const checkAuth = () => {
+      const token = localStorage.getItem('petcure_token');
+      const savedUser = localStorage.getItem('petcure_user');
+      if (token && savedUser) {
+        try {
+          setUser(JSON.parse(savedUser));
+        } catch (e) {
+          localStorage.removeItem('petcure_token');
+          localStorage.removeItem('petcure_user');
+        }
+      }
+      setLoading(false);
+    };
+
+    // Small delay to make the loading transition feel intentional and smooth
+    const timer = setTimeout(checkAuth, 600);
+    return () => clearTimeout(timer);
   }, []);
 
   const login = (userData) => {

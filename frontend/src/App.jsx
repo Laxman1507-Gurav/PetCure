@@ -28,21 +28,51 @@ import Contact from './pages/Contact';
 
 import { useAuth } from './context/AuthContext';
 
+// Premium Loading Screen
+function LoadingScreen() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--bg-dark)]">
+      <motion.div
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.5, 1, 0.5],
+        }}
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="flex flex-col items-center gap-4"
+      >
+        <div className="text-6xl">🐾 PetCure</div>
+        <div className="w-48 h-1 bg-gray-200 rounded-full overflow-hidden">
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: "100%" }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="w-full h-full bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent"
+          />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 // Protected route wrapper
 function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
-  if (loading) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-[var(--color-primary)] border-t-transparent rounded-full animate-spin" />
-    </div>
-  );
+  if (loading) return <LoadingScreen />;
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 }
 
 // Redirect authenticated users away from public pages (Home, Login, Register)
 function PublicRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
-  if (loading) return null;
+  if (loading) return <LoadingScreen />;
   return isAuthenticated ? <Navigate to="/dashboard" replace /> : children;
 }
 
@@ -50,7 +80,7 @@ function PublicRoute({ children }) {
 function LandingRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
 
-  if (loading) return null;
+  if (loading) return <LoadingScreen />;
   // If authenticated, redirect to dashboard or index
   if (isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
@@ -58,14 +88,17 @@ function LandingRoute({ children }) {
   return children;
 }
 
-// Page transition wrapper
+// Premium Page transition wrapper
 function PageWrapper({ children }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+      initial={{ opacity: 0, y: 15, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -15, scale: 1.02 }}
+      transition={{
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1] // Custom cubic-bezier for a "glide" feel
+      }}
     >
       {children}
     </motion.div>
