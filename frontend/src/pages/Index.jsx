@@ -15,7 +15,13 @@ const fadeUp = {
   show: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } }),
 };
 
+import { useEffect } from 'react';
+
 export default function Index() {
+  useEffect(() => {
+    localStorage.setItem('petcure_visited', 'true');
+  }, []);
+
   return (
     <div className="min-h-screen pt-16">
       {/* Hero */}

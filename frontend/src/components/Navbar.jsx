@@ -5,8 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 
 const navLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'Services', to: '/index' },
+  { label: 'Home', to: '/index' },
   { label: 'Blog', to: '/blog' },
   { label: 'Find Doctor', to: '/find-doctor' },
   { label: 'Medicines', to: '/medicines' },
@@ -54,7 +53,7 @@ export default function Navbar() {
               .filter(link => {
                 // Only hide Home/Services if the user is logged in AND on the Dashboard or internal routes
                 const isAuthFlow = ['/dashboard', '/blog/create'].includes(location.pathname) || (user && ['/index', '/dashboard'].includes(location.pathname));
-                if (isAuthFlow && (link.label === 'Home' || link.label === 'Services')) return false;
+                if (isAuthFlow && link.label === 'Home' && link.to === '/index' && location.pathname === '/index') return false;
                 return true;
               })
               .map((link) => (
@@ -157,7 +156,7 @@ export default function Navbar() {
               {navLinks
                 .filter(link => {
                   const isAuthFlow = ['/dashboard', '/blog/create'].includes(location.pathname) || (user && ['/index', '/dashboard'].includes(location.pathname));
-                  if (isAuthFlow && (link.label === 'Home' || link.label === 'Services')) return false;
+                  if (isAuthFlow && link.label === 'Home' && link.to === '/index' && location.pathname === '/index') return false;
                   return true;
                 })
                 .map((link) => (

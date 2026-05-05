@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect } from 'react';
 
@@ -44,6 +44,19 @@ function PublicRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
   if (loading) return null;
   return isAuthenticated ? <Navigate to="/dashboard" replace /> : children;
+}
+
+// Special wrapper for the landing page (Home)
+function LandingRoute({ children }) {
+  const { isAuthenticated, loading } = useAuth();
+  const hasVisited = localStorage.getItem('petcure_visited') === 'true';
+
+  if (loading) return null;
+  // If authenticated OR has visited before, skip the landing page
+  if (isAuthenticated || hasVisited) {
+    return <Navigate to="/index" replace />;
+  }
+  return children;
 }
 
 // Page transition wrapper
@@ -122,7 +135,7 @@ export default function App() {
       <main className="flex-1">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<PublicRoute><PageWrapper><Home /></PageWrapper></PublicRoute>} />
+            <Route path="/" element={<LandingRoute><PageWrapper><Home /></PageWrapper></LandingRoute>} />
             <Route path="/index" element={<PageWrapper><Index /></PageWrapper>} />
             <Route path="/blog" element={<PageWrapper><Blog /></PageWrapper>} />
             <Route path="/blog/create" element={
