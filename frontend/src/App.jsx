@@ -49,12 +49,11 @@ function PublicRoute({ children }) {
 // Special wrapper for the landing page (Home)
 function LandingRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
-  const hasVisited = localStorage.getItem('petcure_visited') === 'true';
 
   if (loading) return null;
-  // If authenticated OR has visited before, skip the landing page
-  if (isAuthenticated || hasVisited) {
-    return <Navigate to="/index" replace />;
+  // If authenticated, redirect to dashboard or index
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
   }
   return children;
 }
