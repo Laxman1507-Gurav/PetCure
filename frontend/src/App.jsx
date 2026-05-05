@@ -28,34 +28,66 @@ import Contact from './pages/Contact';
 
 import { useAuth } from './context/AuthContext';
 
-// Premium Loading Screen
+// Premium & Responsive Loading Screen
 function LoadingScreen() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--bg-dark)]">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#fdfbfd] to-[#f8f6fc] px-6">
       <motion.div
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.5, 1, 0.5],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="flex flex-col items-center gap-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex flex-col items-center gap-8 w-full max-w-sm"
       >
-        <div className="text-6xl">🐾 PetCure</div>
-        <div className="w-48 h-1 bg-gray-200 rounded-full overflow-hidden">
-          <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: "100%" }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="w-full h-full bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent"
-          />
+        {/* Floating Logo Container */}
+        <motion.div
+          animate={{
+            y: [0, -15, 0],
+            rotate: [0, -2, 2, 0]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="relative"
+        >
+          {/* Glow Effect */}
+          <div className="absolute inset-0 bg-[var(--color-primary)]/20 blur-3xl rounded-full scale-150" />
+
+          <div className="relative flex flex-col items-center gap-3">
+            <motion.span
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-7xl md:text-8xl"
+            >
+              🐾
+            </motion.span>
+            <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-black">
+              Pet<span className="text-[var(--color-primary)]">Cure</span>
+            </h1>
+          </div>
+        </motion.div>
+
+        {/* Shimmering Progress Container */}
+        <div className="w-full flex flex-col items-center gap-3">
+          <div className="w-full h-1.5 bg-gray-200/50 rounded-full overflow-hidden backdrop-blur-sm border border-black/5">
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: "100%" }}
+              transition={{
+                duration: 3.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="w-full h-full bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent"
+            />
+          </div>
+          <motion.p
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500"
+          >
+            Initializing Care For Loyal Eyes
+          </motion.p>
         </div>
       </motion.div>
     </div>

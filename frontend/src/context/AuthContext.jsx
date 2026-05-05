@@ -22,8 +22,8 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     };
 
-    // Small delay to make the loading transition feel intentional and smooth
-    const timer = setTimeout(checkAuth, 600);
+    // Increased delay (4.s) to ensure the premium loading screen is seen
+    const timer = setTimeout(checkAuth, 4000);
     return () => clearTimeout(timer);
   }, []);
 
