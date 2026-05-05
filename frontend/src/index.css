@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* ── CSS Variables ─────────────────────────────────── */
+:root {
+  --color-primary: #8e7cc3; /* Lavender / Soft Purple */
+  --color-primary-dark: #674ea7; /* Deep Lavender */
+  --color-secondary: #333333;
+  --color-accent: #c27ba0; /* Soft Rose / Accent */
+  --bg-light: #fdfbfd;
+  --bg-dark: #f8f6fc; /* Subtle Lavender Background */
+  --surface-dark: #ffffff;
+  --surface-dark-2: #fdfbff;
+  --text-dark: #1a1a1a;
+  --text-muted-dark: #4a4a4a;
+  --border-dark: rgba(142, 124, 195, 0.15); /* Lavender tinted border */
+}
+
+/* ── Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface-dark); }
+::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 3px; }
+
+/* ── Glassmorphism ─────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.glass-card {
+  background: #F0F8FF; /* AliceBlue */
+  border: 1px solid var(--border-dark);
+  border-radius: 1.25rem; /* slightly rounder */
+  box-shadow: 0 4px 20px -2px rgba(142, 124, 195, 0.08); /* lavender shadow */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-dark);
+}
+
+.glass-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px -5px rgba(142, 124, 195, 0.15);
+}
+
+/* ── Text Utilities ────────────────────────────────── */
+.text-main { color: var(--text-dark); transition: color 0.3s ease; }
+.text-muted { color: var(--text-muted-dark); transition: color 0.3s ease; }
+
+/* ── Gradient Text ─────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Gradient Buttons ──────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: #ffffff;
+  padding: 0.85rem 2.25rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.025em;
+  box-shadow: 0 4px 15px -1px rgba(142, 124, 195, 0.2);
+}
+
+/* Hover removed */
+
+.btn-outline {
+  background: #ffffff;
+  color: #000000;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  border: 1px solid #d1d5db; /* gray-300 */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+/* Hover removed */
+
+/* ── Section Wrapper ───────────────────────────────── */
+.section-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.input-field {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #d1d5db; /* gray-300 */
+  border-radius: 0.75rem;
+  padding: 0.875rem 1rem;
+  color: #000000;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* blue-600 focus ring */
+}
+
+.input-field::placeholder { color: var(--text-muted-dark); }
+
+/* ── Leaflet fix ───────────────────────────────────── */
+.leaflet-container { border-radius: 1rem; z-index: 1; }
+
+/* ── Page Transition ───────────────────────────────── */
+.page-enter { opacity: 0; transform: translateY(20px); }
+.page-enter-active { opacity: 1; transform: translateY(0); transition: all 0.4s ease; }
+
+/* ── Badge ─────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-green { background: rgba(142, 124, 195, 0.1); color: var(--color-primary); }
+.badge-blue  { background: rgba(194, 123, 160, 0.1); color: var(--color-accent); }
+.badge-amber { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+.badge-red   { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
+
+/* ── Glow effect ───────────────────────────────────── */
+.glow-green { box-shadow: 0 0 40px rgba(98, 131, 203, 0.2); }
+
+/* Light mode overrides */
+body.light {
+  --bg-dark: #ffffff;
+  --surface-dark: #ffffff;
+  --surface-dark-2: #ffffff;
+  --text-dark: #000000;
+  --text-muted-dark: rgba(0, 0, 0, 0.7);
+  --border-dark: rgba(0,0,0,0.2);
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.light .glass-card {
+  background: #F0F8FF;
+  border-color: rgba(0,0,0,0.1);
+}
+
+body.light .input-field {
+  background: #ffffff;
+  color: #1e293b;
+  border-color: #d1d5db;
+}
+
+/* Custom Scrollbar Utility */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
