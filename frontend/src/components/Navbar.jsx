@@ -44,7 +44,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/index" className="flex items-center gap-2 group">
             <span className="text-white font-bold text-lg">🐾</span>
-            <span className="text-xl font-bold text-black tracking-tight group-hover:text-[var(--color-primary)] transition-colors">PetCure</span>
+            <span className="text-xl font-bold text-black tracking-tight transition-colors">PetCure</span>
           </Link>
 
           {/* Desktop Links */}
