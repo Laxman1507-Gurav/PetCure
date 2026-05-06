@@ -17,7 +17,7 @@ export default function FindDoctor() {
         <div className="grid sm:grid-cols-3 gap-5 mt-10">
           {[
             { icon: '📍', title: 'Detect Location', desc: 'Click "My Location" to find clinics closest to you.' },
-            { icon: '🏥', title: 'Select a Clinic', desc: 'Click any green marker to view clinic info and select it.' },
+            { icon: '🏥', title: 'Select a Clinic', desc: 'Click any violet marker to view clinic info and select it.' },
             { icon: '📅', title: 'Book Appointment', desc: 'Go to Dashboard to confirm your appointment at the selected clinic.' },
           ].map((t) => (
             <motion.div
