@@ -117,7 +117,7 @@ export default function Home() {
               <span className="badge badge-green mb-4">About Us</span>
 
               <h2 className="text-4xl font-extrabold text-black mb-5 leading-tight">
-                India's Most Trusted <span className="gradient-text">Animal Healthcare Platform</span>
+                Most Trusted <span className="gradient-text">Animal Healthcare Platform</span>
               </h2>
 
               <p className="text-gray-800 leading-relaxed mb-4">

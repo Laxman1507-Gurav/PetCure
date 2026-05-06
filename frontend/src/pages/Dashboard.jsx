@@ -89,51 +89,55 @@ export default function Dashboard() {
             <h2 className="text-xl font-bold text-black mb-6">📅 Book an Appointment</h2>
 
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Animal Type */}
-              <div>
-                <label className="block text-sm font-medium text-black mb-2">Animal Type *</label>
-                <select
-                  value={form.animalType}
-                  onChange={(e) => setForm({ ...form, animalType: e.target.value })}
-                  className="input-field"
-                >
-                  {ANIMAL_TYPES.map((a) => <option key={a}>{a}</option>)}
-                </select>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Animal Type */}
+                <div>
+                  <label className="block text-sm font-medium text-black mb-2">Animal Type *</label>
+                  <select
+                    value={form.animalType}
+                    onChange={(e) => setForm({ ...form, animalType: e.target.value })}
+                    className="input-field"
+                  >
+                    {ANIMAL_TYPES.map((a) => <option key={a}>{a}</option>)}
+                  </select>
+                </div>
+
+                {/* Breed */}
+                <div>
+                  <label className="block text-sm font-medium text-black mb-2">Breed</label>
+                  <input
+                    value={form.breed}
+                    onChange={(e) => setForm({ ...form, breed: e.target.value })}
+                    placeholder="e.g. Golden Retriever"
+                    className="input-field"
+                  />
+                </div>
               </div>
 
-              {/* Breed */}
-              <div>
-                <label className="block text-sm font-medium text-black mb-2">Breed</label>
-                <input
-                  value={form.breed}
-                  onChange={(e) => setForm({ ...form, breed: e.target.value })}
-                  placeholder="e.g. Golden Retriever"
-                  className="input-field"
-                />
-              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Pet Name */}
+                <div>
+                  <label className="block text-sm font-medium text-black mb-2">Pet Name (optional)</label>
+                  <input
+                    value={form.petName}
+                    onChange={(e) => setForm({ ...form, petName: e.target.value })}
+                    placeholder="e.g. Bruno"
+                    className="input-field"
+                  />
+                </div>
 
-              {/* Pet Name */}
-              <div>
-                <label className="block text-sm font-medium text-black mb-2">Pet Name (optional)</label>
-                <input
-                  value={form.petName}
-                  onChange={(e) => setForm({ ...form, petName: e.target.value })}
-                  placeholder="e.g. Bruno"
-                  className="input-field"
-                />
-              </div>
-
-              {/* Contact */}
-              <div>
-                <label className="block text-sm font-medium text-black mb-2">Contact Number *</label>
-                <input
-                  value={form.contactNumber}
-                  onChange={(e) => setForm({ ...form, contactNumber: e.target.value })}
-                  placeholder="10-digit mobile number"
-                  className={`input-field ${errors.contactNumber ? 'border-rose-500' : ''}`}
-                  maxLength={10}
-                />
-                {errors.contactNumber && <p className="text-rose-400 text-xs mt-1">{errors.contactNumber}</p>}
+                {/* Contact */}
+                <div>
+                  <label className="block text-sm font-medium text-black mb-2">Contact Number *</label>
+                  <input
+                    value={form.contactNumber}
+                    onChange={(e) => setForm({ ...form, contactNumber: e.target.value })}
+                    placeholder="10-digit mobile number"
+                    className={`input-field ${errors.contactNumber ? 'border-rose-500' : ''}`}
+                    maxLength={10}
+                  />
+                  {errors.contactNumber && <p className="text-rose-400 text-xs mt-1">{errors.contactNumber}</p>}
+                </div>
               </div>
 
               {/* Notes */}
